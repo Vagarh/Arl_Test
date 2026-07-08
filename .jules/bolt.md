@@ -1,0 +1,3 @@
+## 2025-02-09 - State-based routing leads to bloated initial JS payload
+**Learning:** In Next.js architectures using state-based routing within a single page component (`app/page.tsx`), all view components are statically imported and bundled together in the initial load payload. This bypasses Next.js's native file-system-based route code splitting.
+**Action:** Use `next/dynamic` to dynamically import complex components that are conditionally rendered based on state. This defers loading the chunks for secondary views until they are actually rendered, significantly dropping the "First Load JS" metric on the root route.
