@@ -1,0 +1,3 @@
+## 2024-07-09 - State-based Routing Initial Bundle Size Optimization
+**Learning:** In React applications utilizing state-based routing where different views are rendered based on state rather than file-system routes (e.g., rendering various heavy chart components in a single `page.tsx`), the initial JavaScript bundle will include all the views and their dependencies (like Recharts). This leads to a bloated initial payload, blocking the main thread and slowing down the initial render.
+**Action:** Always utilize `next/dynamic` (in Next.js) or `React.lazy` (in standard React) to lazily load view components that are conditionally rendered through state. This code-splits the heavy dependencies, downloading them only when the user navigates to those specific views.
