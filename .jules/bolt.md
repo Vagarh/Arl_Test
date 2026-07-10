@@ -1,0 +1,3 @@
+## 2024-07-10 - State-based routing bundle size bottleneck
+**Learning:** The dashboard architecture uses state-based routing for its views within `app/page.tsx` instead of Next.js file-system routing. Importing all view components synchronously causes a significant bundle-size bottleneck because all views are loaded in the initial JavaScript bundle, even if only one view is visible at a time.
+**Action:** Always use lazy loading (e.g., `next/dynamic` in Next.js) for view components in state-based routing architectures to optimize the initial JavaScript bundle size and defer loading of non-initial views.
