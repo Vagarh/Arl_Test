@@ -1,14 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
-import ResumenEjecutivo from "@/components/views/ResumenEjecutivo";
-import AnalisisCanales from "@/components/views/AnalisisCanales";
-import AnalisisTematico from "@/components/views/AnalisisTematico";
-import ClientesRecurrentes from "@/components/views/ClientesRecurrentes";
-import ClasificadorVivo from "@/components/views/ClasificadorVivo";
-import Prediccion from "@/components/views/Prediccion";
+
+// ⚡ Bolt Optimization: Lazily load view components to reduce initial JS bundle size
+// Since we use state-based routing instead of file-system routing, all views
+// were previously bundled together in the initial load.
+const ResumenEjecutivo = dynamic(() => import("@/components/views/ResumenEjecutivo"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
+const AnalisisCanales = dynamic(() => import("@/components/views/AnalisisCanales"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
+const AnalisisTematico = dynamic(() => import("@/components/views/AnalisisTematico"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
+const ClientesRecurrentes = dynamic(() => import("@/components/views/ClientesRecurrentes"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
+const ClasificadorVivo = dynamic(() => import("@/components/views/ClasificadorVivo"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
+const Prediccion = dynamic(() => import("@/components/views/Prediccion"), {
+  loading: () => <div className="p-8 text-center text-brand-neutral/60">Cargando vista...</div>
+});
 
 export type View = "resumen" | "canales" | "tematico" | "recurrentes" | "clasificador" | "prediccion";
 
