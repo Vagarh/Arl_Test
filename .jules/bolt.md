@@ -1,0 +1,3 @@
+## 2024-07-13 - State-based routing with Next.js needs lazy loading
+**Learning:** This Next.js application uses a single monolithic `app/page.tsx` file for all "routes" by swapping out rendered view components via state, rather than using standard file-system routing. By default, synchronous imports in a client component (`"use client"`) bundle all these separate massive view components together, destroying the initial page load time.
+**Action:** Always inspect the routing mechanism. If a Next.js (or any React) app loads multiple independent views in a single route via state, immediately implement lazy loading (e.g., `next/dynamic` or `React.lazy`) for those views to correctly chunk the JavaScript bundle.
