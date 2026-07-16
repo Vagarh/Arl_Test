@@ -1,0 +1,3 @@
+## 2024-07-16 - Bundle Size Optimization in State-Based Routing
+**Learning:** In Next.js applications that use state-based routing (conditionally rendering components based on state rather than file-system routing), all view components are statically imported by default. This causes the initial JavaScript bundle for that route to contain the code for all views, unnecessarily bloating the initial load size.
+**Action:** Always use `next/dynamic` to lazily load view components when implementing state-based routing within a single Next.js page, to ensure code splitting occurs and only the active view's JavaScript is loaded initially.
