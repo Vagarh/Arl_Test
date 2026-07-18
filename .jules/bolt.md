@@ -1,0 +1,5 @@
+## 2025-02-18 - Lazy loading route components with `next/dynamic`
+
+**Learning:** This Next.js dashboard uses state-based routing within `app/page.tsx` instead of the typical Next.js file-system routing. Because of this architectural choice, all view components were being statically imported and loaded in the initial JavaScript bundle, even though the user only sees one view at a time. This results in a massive and slow initial load.
+
+**Action:** When working with single-page-like architectures in Next.js (where state controls the view rather than the URL path), view components should be lazily loaded using `next/dynamic`. This dramatically reduces the initial bundle size, allowing the application to load faster. The application will fetch the JS for the other views on-demand as the user navigates.
