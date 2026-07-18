@@ -3,12 +3,16 @@
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
-import ResumenEjecutivo from "@/components/views/ResumenEjecutivo";
-import AnalisisCanales from "@/components/views/AnalisisCanales";
-import AnalisisTematico from "@/components/views/AnalisisTematico";
-import ClientesRecurrentes from "@/components/views/ClientesRecurrentes";
-import ClasificadorVivo from "@/components/views/ClasificadorVivo";
-import Prediccion from "@/components/views/Prediccion";
+import dynamic from 'next/dynamic';
+
+// Lazy load view components to dramatically reduce the initial JS bundle size
+// since only one view is active at a time via state-based routing.
+const ResumenEjecutivo = dynamic(() => import("@/components/views/ResumenEjecutivo"));
+const AnalisisCanales = dynamic(() => import("@/components/views/AnalisisCanales"));
+const AnalisisTematico = dynamic(() => import("@/components/views/AnalisisTematico"));
+const ClientesRecurrentes = dynamic(() => import("@/components/views/ClientesRecurrentes"));
+const ClasificadorVivo = dynamic(() => import("@/components/views/ClasificadorVivo"));
+const Prediccion = dynamic(() => import("@/components/views/Prediccion"));
 
 export type View = "resumen" | "canales" | "tematico" | "recurrentes" | "clasificador" | "prediccion";
 
