@@ -3,12 +3,20 @@
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
-import ResumenEjecutivo from "@/components/views/ResumenEjecutivo";
-import AnalisisCanales from "@/components/views/AnalisisCanales";
-import AnalisisTematico from "@/components/views/AnalisisTematico";
-import ClientesRecurrentes from "@/components/views/ClientesRecurrentes";
-import ClasificadorVivo from "@/components/views/ClasificadorVivo";
-import Prediccion from "@/components/views/Prediccion";
+import dynamic from "next/dynamic";
+
+// ⚡ Bolt: Implemented lazy loading for View Components using next/dynamic
+// 💡 What: Replaced static imports with dynamic imports for the 6 main view components.
+// 🎯 Why: Previously, all views were bundled together, increasing initial JS load. By lazy loading, we split the bundle and only load the active view's JavaScript when needed.
+// 📊 Impact: Significantly reduces initial bundle size (First Load JS) and improves initial page load time, especially since some views might use heavy libraries like Recharts.
+// 🔬 Measurement: The size of the shared app chunk and first load JS is reduced. Verified via `pnpm run build` output.
+
+const ResumenEjecutivo = dynamic(() => import("@/components/views/ResumenEjecutivo"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
+const AnalisisCanales = dynamic(() => import("@/components/views/AnalisisCanales"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
+const AnalisisTematico = dynamic(() => import("@/components/views/AnalisisTematico"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
+const ClientesRecurrentes = dynamic(() => import("@/components/views/ClientesRecurrentes"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
+const ClasificadorVivo = dynamic(() => import("@/components/views/ClasificadorVivo"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
+const Prediccion = dynamic(() => import("@/components/views/Prediccion"), { ssr: true, loading: () => <div className="p-4 flex items-center justify-center h-full text-brand-text">Cargando vista...</div> });
 
 export type View = "resumen" | "canales" | "tematico" | "recurrentes" | "clasificador" | "prediccion";
 
