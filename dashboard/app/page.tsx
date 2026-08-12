@@ -3,12 +3,21 @@
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
-import ResumenEjecutivo from "@/components/views/ResumenEjecutivo";
-import AnalisisCanales from "@/components/views/AnalisisCanales";
-import AnalisisTematico from "@/components/views/AnalisisTematico";
-import ClientesRecurrentes from "@/components/views/ClientesRecurrentes";
-import ClasificadorVivo from "@/components/views/ClasificadorVivo";
-import Prediccion from "@/components/views/Prediccion";
+import dynamic from "next/dynamic";
+
+const LoadingFallback = () => (
+  <div className="flex h-full items-center justify-center p-8">
+    <p className="text-brand-text/50">Cargando...</p>
+  </div>
+);
+
+// ⚡ Bolt: Lazy load view components to reduce initial JavaScript bundle size and improve TTI
+const ResumenEjecutivo = dynamic(() => import("@/components/views/ResumenEjecutivo"), { loading: LoadingFallback });
+const AnalisisCanales = dynamic(() => import("@/components/views/AnalisisCanales"), { loading: LoadingFallback });
+const AnalisisTematico = dynamic(() => import("@/components/views/AnalisisTematico"), { loading: LoadingFallback });
+const ClientesRecurrentes = dynamic(() => import("@/components/views/ClientesRecurrentes"), { loading: LoadingFallback });
+const ClasificadorVivo = dynamic(() => import("@/components/views/ClasificadorVivo"), { loading: LoadingFallback });
+const Prediccion = dynamic(() => import("@/components/views/Prediccion"), { loading: LoadingFallback });
 
 export type View = "resumen" | "canales" | "tematico" | "recurrentes" | "clasificador" | "prediccion";
 
