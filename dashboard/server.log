@@ -1,0 +1,12 @@
+
+> sura-dashboard@0.1.0 dev /app/dashboard
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1931ms
+ ○ Compiling / ...
+ ✓ Compiled / in 11.9s (1662 modules)
+ GET / 200 in 12541ms
